@@ -1,0 +1,58 @@
+******************************************* SWITCH INTERFACING ****************************************
+#include <stdio.h>
+#include "driver/gpio.h"
+#include "freertos/FreeRTOS.h"
+
+
+#define BUTTON_PIN GPIO_NUM_18
+
+void app_main(void)
+{
+    gpio_reset_pin(BUTTON_PIN);
+    gpio_set_direction(BUTTON_PIN, GPIO_MODE_INPUT);
+    gpio_set_pull_mode(BUTTON_PIN, GPIO_PULLUP_ONLY);
+
+    while (1)
+    {
+        printf("Button = %d\n", gpio_get_level(BUTTON_PIN));
+        vTaskDelay(pdMS_TO_TICKS(500));
+    }
+}
+
+******************************************* LED W SWITCH ****************************************
+#include <stdio.h>
+#include "driver/gpio.h"
+#include "freertos/FreeRTOS.h"
+
+#define led_pin 2
+#define Button_pin 18
+
+void app_main(void)
+{
+gpio_reset_pin(led_pin);
+gpio_reset_pin(Button_pin);
+
+gpio_set_direction(led_pin, GPIO_MODE_OUTPUT);
+
+gpio_set_pull_mode(Button_pin,GPIO_PULLUP_ONLY);
+gpio_set_direction(Button_pin,GPIO_MODE_INPUT);
+
+while(1)
+{
+    int status = gpio_get_level(Button_pin);
+    if(status == true)
+    {
+       gpio_set_level(led_pin, true);
+    }
+   else 
+   {
+       gpio_set_level(led_pin, false);
+   }
+    vTaskDelay(50/ portTICK_PERIOD_MS);
+
+}
+}
+
+
+
+
