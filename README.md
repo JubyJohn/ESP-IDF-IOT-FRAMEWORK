@@ -27,3 +27,6 @@ TO FAMILARIZE ESP - IDF FRAMEWORK
 * flash icon -> upload/flash
 * desktop icon -> Serial monitor
 * There are symbols to show device connected and its corresponding port
+
+# REFERENCE
+https://github.com/voidlooprobotech/ESP32_ESP-IDF_Code/tree/main
